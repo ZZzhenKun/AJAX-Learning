@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重复发送请求</title>
+</head>
+
+<body>
+    <button>点击发送</button>
+
+    <script>
+        const btn = document.getElementsByTagName("button");
+        var x = null;
+        // 发送标识
+        var isSending = false;
+        btn[0].onclick = function () {
+            // 判断标识变量
+            if(isSending) {
+                x.abort(); //如果正在发送，则取消该请求
+            }
+            x = new XMLHttpRequest();
+            isSending = true;
+            x.open('GET', 'http://127.0.0.1:8000/delay');
+            x.send();
+            x.onreadystatechange = function(){
+                if(x.readyState === 4){
+                    isSending = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

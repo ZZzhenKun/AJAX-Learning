@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>取消发送</title>
+</head>
+
+<body>
+    <button>点击发送</button>
+    <button>点击取消</button>
+
+    <script>
+        const btn = document.getElementsByTagName("button");
+        var x = null;
+        btn[0].onclick = function () {
+            x = new XMLHttpRequest();
+            x.open('GET', 'http://127.0.0.1:8000/delay');
+            x.send();
+        }
+        btn[1].onclick = function () {
+            // 取消请求发送
+            x.abort();
+        }
+    </script>
+</body>
+
+</html>
