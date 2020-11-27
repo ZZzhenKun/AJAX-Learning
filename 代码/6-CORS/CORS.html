@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 150px;
+            border: red 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <button>点击发送</button>
+    <div id="result"></div>
+    <script>
+        var btn = document.getElementsByTagName("button")[0];
+        var result = document.getElementById("result");
+
+        btn.onclick = function(){
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET','http://127.0.0.1:8000/cors-server');
+            xhr.send();
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        result.innerHTML = xhr.response;
+                        // console.log(xhr.response);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

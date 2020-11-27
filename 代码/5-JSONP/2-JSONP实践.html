@@ -26,10 +26,11 @@
         // 绑定事件
         input.onblur = function(){
             // 获取用户输入值
-            var username = this.value;
+            var username = this.value;\
+            // 向服务器发送请求检测用户名是否存在
             // 创建script标签
             var script = document.createElement("script");
-            // 添加src
+            // 添加src，引用其他js代码
             script.src = "http://127.0.0.1:8000/check-username";
             // 绑定script标签
             document.body.appendChild(script);

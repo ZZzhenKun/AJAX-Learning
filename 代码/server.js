@@ -79,6 +79,13 @@ app.all('/check-username',(request,response)=>{
     response.end(`handle(${str})`);
 });
 
+// cors服务
+app.all('/cors-server',(request,response)=>{
+    response.setHeader('Access-Control-Allow-Origin', '*');
+    response.send("HELLO CORS!");
+});
+
+
 // 4.监听端口启动服务
 app.listen(8000, () => {
     console.log("服务已经启动， 8000 端口监听中.....");
