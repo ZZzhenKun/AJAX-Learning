@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSONP实践</title>
+</head>
+<body>
+    用户名：<input type="text" id='username'>
+    <p></p>
+
+
+    <script>
+        // 获取input标签
+        var input = document.getElementById("username");
+        // 获取p标签
+        var p = document.getElementsByTagName("p");
+
+        // 声明handle函数
+        function handle(data){
+            input.style.border = "1px solid red";
+            // 修改p标签显示内容
+            p.innerHTML = data.msg;
+        }
+
+        // 绑定事件
+        input.onblur = function(){
+            // 获取用户输入值
+            var username = this.value;
+            // 创建script标签
+            var script = document.createElement("script");
+            // 添加src
+            script.src = "http://127.0.0.1:8000/check-username";
+            // 绑定script标签
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

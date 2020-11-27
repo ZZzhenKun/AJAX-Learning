@@ -1,5 +1,5 @@
 // 1.引入express
-const { response, json } = require('express');
+const { response, json, request } = require('express');
 const express = require('express');
 // 2.创建应用对象
 const app = express();
@@ -66,6 +66,19 @@ app.get('/delay', (request, response) => {
     // },2000);
 
 });
+
+// jsonp服务
+app.all('/check-username',(request,response)=>{
+    var data={
+        exist:1,
+        msg:'用户名已经存在'
+    };
+    // 数据转化为字符串
+    var str = JSON.stringify(data);
+    // 返回结果
+    response.end(`handle(${str})`);
+});
+
 // 4.监听端口启动服务
 app.listen(8000, () => {
     console.log("服务已经启动， 8000 端口监听中.....");
